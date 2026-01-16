@@ -15,7 +15,6 @@ import {
 import toast from 'react-hot-toast'
 import Link from 'next/link'
 import { signUp, ActionResponse } from '@/app/actions/auth'
-import { errors } from 'jose'
 const initialState: ActionResponse = {
   success: false,
   message: '',

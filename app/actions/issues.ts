@@ -6,9 +6,7 @@ import { eq } from 'drizzle-orm'
 import { getCurrentUser } from '@/lib/dal'
 import { z } from 'zod'
 import { mockDelay } from '@/lib/utils'
-import { log } from 'console'
 import { revalidateTag } from 'next/cache'
-
 
 // Define Zod schema for issue validation
 const IssueSchema = z.object({
@@ -71,6 +69,7 @@ export async function createIssue(data: IssueData): Promise<ActionResponse> {
 
     return { success: true, message: 'Issue created successfully' }
   } catch (error) {
+    console.error('Error creating issue:', error) //因为你 根本没有在 catch 里用到这个 error 变量。
     return {
       success: false,
       message: 'An error occurred while creating the issue',
@@ -108,56 +107,55 @@ export async function updateIssue(
     }
 
     //Type safe update object with validated data
-const validatedData=validationResult.data
-const updateData:Record<string,unknown>={}
+    const validatedData = validationResult.data
+    const updateData: Record<string, unknown> = {}
 
-if (validatedData.title !==undefined)
-  updateData.title=validatedData.title
-if (validatedData.description !== undefined)
-  updateData.description=validatedData.description
-if(validatedData.status!==undefined)
-  updateData.status=validatedData.status
-if(validatedData.priority!==undefined)
-  updateData.priority=validatedData.priority
+    if (validatedData.title !== undefined)
+      updateData.title = validatedData.title
+    if (validatedData.description !== undefined)
+      updateData.description = validatedData.description
+    if (validatedData.status !== undefined)
+      updateData.status = validatedData.status
+    if (validatedData.priority !== undefined)
+      updateData.priority = validatedData.priority
 
     //Updata issue
-    await db.update(issues).set(updateData).where(eq(issues.id,id))
+    await db.update(issues).set(updateData).where(eq(issues.id, id))
     return {
-      success:true,
-      message:'Issue updated successfully'
+      success: true,
+      message: 'Issue updated successfully',
     }
   } catch (error) {
-    console.error('Error updating issue:',error)
-    return{
-      success:false,
-      message:'An error occurred while updating the issue',
-      error:'Failed to update issue'
+    console.error('Error updating issue:', error)
+    return {
+      success: false,
+      message: 'An error occurred while updating the issue',
+      error: 'Failed to update issue',
     }
   }
 }
 
-export async function deleteIssue(id:number){
-  try{
+export async function deleteIssue(id: number) {
+  try {
     //security check - ensure user is authenticated
     await mockDelay(700)
-    const user=await getCurrentUser()
-    if (!user){
+    const user = await getCurrentUser()
+    if (!user) {
       throw new Error('Unauthorized')
     }
     //Delete issue
-    await db.delete(issues).where(eq(issues.id,id))
+    await db.delete(issues).where(eq(issues.id, id))
 
-    return{
-      success:true,
-      message:'Issue deleted successfully'
+    return {
+      success: true,
+      message: 'Issue deleted successfully',
     }
-  }catch(error){
-    console.error('Error deleting issue:',error)
-    return{
-      success:false,
-      message:'An error occurred while deleting the issue',
-      error:'Failed to delete issue'
+  } catch (error) {
+    console.error('Error deleting issue:', error)
+    return {
+      success: false,
+      message: 'An error occurred while deleting the issue',
+      error: 'Failed to delete issue',
     }
   }
 }
-

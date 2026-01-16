@@ -12,8 +12,6 @@ import {
 import toast from 'react-hot-toast'
 import Link from 'next/link'
 import { signIn, ActionResponse } from '@/app/actions/auth'
-import { error } from 'console'
-import { stat } from 'fs'
 
 const initialState: ActionResponse = {
   success: false,
@@ -109,7 +107,7 @@ export default function SignInPage() {
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white text-center dark:bg-[#1A1A1A] py-8  px-4 shadow sm:rounded-lg sm:px-10 border border-gray-100 dark:border-dark-border-subtle">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Don't have an account?
+            Don&apos;t have an account?
             <Link
               href="/signup"
               className="font-medium text-gray-900 hover:text-gray-700 dark:text-gray-300"

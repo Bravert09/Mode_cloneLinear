@@ -1,7 +1,4 @@
-
-
-
-import { ArrowLeftIcon, Divide } from "lucide-react"
+import { ArrowLeftIcon } from "lucide-react"
 import Link from "next/link"
 import { Suspense } from "react"
 import NewIssue from "@/app/components/NewIssue"

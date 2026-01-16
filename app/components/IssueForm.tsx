@@ -13,8 +13,6 @@ import {
   FormError,
 } from './ui/Form'
 import { createIssue, ActionResponse, updateIssue } from '@/app/actions/issues'
-import { Result } from 'postcss'
-import { errors } from 'jose'
 
 interface IssueFormProps {
   issue?: Issue

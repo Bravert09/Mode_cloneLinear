@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { HomeIcon, PlusIcon, LogInIcon } from 'lucide-react'
+import { HomeIcon, PlusIcon} from 'lucide-react'
 import UserEmail from './UserEmail'
 import { Suspense } from 'react'
 import NavLink from './NavLink'
@@ -32,7 +32,7 @@ export default function Navigation() {
 
       <div className="pt-4 border-t border-gray-200 dark:border-dark-border-subtle">
         <Suspense
-          fallback={<p>'加载用户...'</p>}
+          fallback={<p>加载用户...</p>}
         >
           <UserEmail />
         </Suspense>

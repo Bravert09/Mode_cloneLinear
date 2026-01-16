@@ -2,11 +2,10 @@ import { NextResponse } from 'next/server'
 import { db } from '@/db'
 import { issues } from '@/db/schema'
 import { eq } from 'drizzle-orm'
-import { error } from 'console'
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: any } }
+  { params }: { params: {id:string} }
 ) {
   try {
     const id = params.id

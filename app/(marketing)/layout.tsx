@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { Timestamp } from '../components/Timestamp'
 import Button from '../components/ui/Button'
-import { Chilanka } from 'next/font/google'
 import React from 'react'
 
 export default async function MarketingLayout({

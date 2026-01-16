@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import { db } from '@/db'
 import { issues } from '@/db/schema'
-import { error, log } from 'console'
 
 export async function GET() {
   try {

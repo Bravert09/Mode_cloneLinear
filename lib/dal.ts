@@ -5,8 +5,6 @@ import { cache } from 'react'
 import { issues, users } from '@/db/schema'
 import { mockDelay } from './utils'
 import { unstable_cacheTag as cacheTag } from 'next/cache'
-import { secondsInDay } from 'date-fns/constants'
-import { error } from 'console'
 
 //current user
 //await mockDelay(1000):模拟延迟1秒
@@ -23,7 +21,7 @@ export const getCurrentUser = cache(async () => {
       .where(eq(users.id, session.userId))
     console.log('get current user tested by cache function')
     return result[0] || null
-  } catch (e) {
+  } catch (error) {
     console.error('Error getting user by ID:', error)
     return null
   }
@@ -36,7 +34,7 @@ export const getUserByEmail = async (email: string) => {
   try {
     const result = await db.select().from(users).where(eq(users.email, email))
     return result[0] || null
-  } catch (e) {
+  } catch (error) {
     console.error('Error getting user by email:', error)
     return null
   }
