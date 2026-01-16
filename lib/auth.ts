@@ -1,6 +1,7 @@
 import { compare, hash } from 'bcrypt'
 import { nanoid } from 'nanoid'
 import { cookies } from 'next/headers'
+//header function运行，需要有请求的上下文环境requesting context，而这就是next提供的headers package
 import { db } from '@/db'
 import { users } from '@/db/schema'
 import * as jose from 'jose'
@@ -117,7 +118,7 @@ export async function createSession(userId: string) {
 }
 
 // Get current session from JWT
-export const getSession = cache(async () => {
+export const getSession =cache(async () => {
   try {
     const cookieStore = await cookies()
     const token = cookieStore.get('auth_token')?.value
@@ -148,3 +149,5 @@ export async function deleteSession() {
   const cookieStore = await cookies()
   cookieStore.delete('auth_token')
 }
+
+//易错点：async和await同在！！！

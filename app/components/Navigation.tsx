@@ -32,13 +32,7 @@ export default function Navigation() {
 
       <div className="pt-4 border-t border-gray-200 dark:border-dark-border-subtle">
         <Suspense
-          fallback={
-            <NavLink
-              href="/signin"
-              icon={<LogInIcon size={20} />}
-              label="Sign In"
-            />
-          }
+          fallback={<p>'加载用户...'</p>}
         >
           <UserEmail />
         </Suspense>
@@ -46,3 +40,8 @@ export default function Navigation() {
     </aside>
   )
 }
+//  <NavLink
+//               href="/signin"
+//               icon={<LogInIcon size={20} />}
+//               label="Sign In"
+//             />
