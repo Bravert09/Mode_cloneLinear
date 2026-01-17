@@ -1,27 +1,43 @@
 {
   "compilerOptions": {
-    "target": "ES2017",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
+    "target": "esnext", // 使用最新 JS 特性
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ], // 支持 DOM 和最新 JS API
+    "allowJs": true, // 允许导入 JS 文件
+    "skipLibCheck": true, // 跳过声明文件检查
+    "strict": true, // 启用所有严格类型检查
+    "forceConsistentCasingInFileNames": true, // 文件名大小写保持一致
+    "noEmit": true, // 不生成编译后的文件（Next.js 会处理）
+    "esModuleInterop": true, // 允许 CommonJS 默认导入
+    "module": "esnext", // ES 模块
+    "moduleResolution": "node", // Node 风格模块解析
+    "resolveJsonModule": true, // 允许导入 JSON 文件
+    "isolatedModules": true, // 确保每个文件是独立模块
+    "jsx": "react-jsx", // Next.js 使用自己的 JSX 转换
+    "baseUrl": ".", // 设置相对路径基准
+    "paths": {
+      "@/*": [
+        "./*"
+      ] // 文件别名 @ 指向根目录
+    },
     "incremental": true,
     "plugins": [
       {
         "name": "next"
       }
-    ],
-    "paths": {
-      "@/*": ["./*"]
-    }
+    ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

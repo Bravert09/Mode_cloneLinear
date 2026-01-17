@@ -1,9 +1,11 @@
-import { getIssues } from '@/lib/dal'
+// export const dynamic = 'force-dynamic'，明确被 cacheComponents 禁止
+import {getIssues } from '@/lib/dal'
 import Link from 'next/link'
 import Button from '../components/ui/Button'
 import { PlusIcon } from 'lucide-react'
 import Badge from '../components/ui/Badge'
-import { formatRelativeTime } from '@/lib/utils'
+import { formatRelativeTime } from '@/lib/utils' //Server Component 不再使用 Date.now
+import RelativeTime from '../components/RelativeTime'
 import { Priority, Status } from '@/lib/types'
 import { ISSUE_STATUS, ISSUE_PRIORITY } from '@/db/schema'
 
@@ -49,12 +51,14 @@ export default async function DashboardPage() {
                       {ISSUE_STATUS[issue.status as Status].label}
                     </Badge>
                   </div>
+                  
                   <div className="col-span-2">
                     <Badge priority={issue.priority as Priority}>
                       {ISSUE_PRIORITY[issue.priority as Priority].label}
                     </Badge>
                   </div>
-                  <div className='col-span-3 text-sm text-gray-500 dark:text-gray-400'>{formatRelativeTime(new Date(issue.createdAt))}</div>
+                  
+                  <div className='col-span-3 text-sm text-gray-500 dark:text-gray-400'><RelativeTime date={issue.createdAt}/></div> 
                 </div>
               </Link>
             ))}
