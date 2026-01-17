@@ -2,6 +2,9 @@ import { NextResponse } from 'next/server'
 import { db } from '@/db'
 import { issues } from '@/db/schema'
 import { eq } from 'drizzle-orm'
+export const dynamic = 'force-dynamic';
+
+
 
 // 从 Next.js 14.2 / 15 开始：params 是 异步的
 export async function GET(
