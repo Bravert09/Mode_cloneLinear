@@ -18,7 +18,7 @@ export default async function LandingPage() {
             </h1>
             <p className="mt-6 max-w-2xl mx-auto text-lg sm:text-xl text-gray-600 dark:text-gray-300">
               A minimal and elegant issue tracking tool for modern teams. Manage
-              your projects with ease
+              your projects with ease. <strong>Can be deleted:Test vercel auto deploy</strong>
             </p>
             <div className="mt-10">
               <Link href="/signup">
